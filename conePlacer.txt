@@ -1,0 +1,27 @@
+import maya.cmds as cmds
+import random
+
+#Capture selection of object to copy and randomise position
+LocatorList = cmds.ls(selection=True)
+
+ListLenLoc = len(LocatorList)
+print(ListLenLoc)
+
+
+for i in range (ListLenLoc):
+    print(i)
+    cmds.polyCone()
+    currentSel = cmds.ls(selection=True)
+    cmds.move(0, -1, 0, currentSel)
+    cmds.FreezeTransformations(currentSel)
+    cmds.ResetTransformations(currentSel)
+    cmds.rotate(180, 0, 0, currentSel)
+    #print(currentSel)
+    currentLocator = [LocatorList[i]]
+    #print(currentLocator)
+    combinedSelection = currentSel + currentLocator
+    print(currentSel)
+    print(currentLocator)
+    print(combinedSelection)
+    #cmds.polyCone
+    cmds.matchTransform(combinedSelection, position=1, scale=1)

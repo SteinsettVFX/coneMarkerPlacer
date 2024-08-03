@@ -1,0 +1,12 @@
+locatorList = cmds.ls(selection=True)
+
+print(locatorList)
+
+for loc in locatorList:
+    print("Moo " + loc)
+    newCone = cmds.polyCone()
+    cmds.move( 0, -1, 0, newCone)
+    cmds.FreezeTransformations(newCone)
+    cmds.ResetTransformations(newCone)
+    cmds.rotate(180, 0, 0, newCone)
+    cmds.matchTransform(newCone,loc, position=1, scale=1)
